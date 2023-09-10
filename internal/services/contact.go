@@ -16,15 +16,16 @@ func NewContactService() *ContactService {
 }
 
 func (c *ContactService) Create(ctx context.Context, input *pb.CreateContactRequest) (*pb.Contact, error) {
+	newUUID := uuid.New().String()
 	c.contacts = append(c.contacts, pb.Contact{
-		Uuid:        uuid.New().String(),
+		Uuid:        newUUID,
 		Name:        input.Name,
 		PhoneNumber: input.PhoneNumber,
 		Email:       input.Email,
 	})
 
 	return &pb.Contact{
-		Uuid:        uuid.New().String(),
+		Uuid:        newUUID,
 		Name:        input.Name,
 		PhoneNumber: input.PhoneNumber,
 		Email:       input.Email,
