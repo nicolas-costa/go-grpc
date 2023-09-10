@@ -1,0 +1,20 @@
+syntax = "proto3";
+package pb;
+option go_package = "internal/pb";
+
+message Contact {
+  string uuid = 1;
+  string name = 2;
+  string phone_number = 3;
+  string email = 4;
+}
+
+message CreateContactRequest {
+  string name = 1;
+  string phone_number = 2;
+  string email = 3;
+}
+
+service ContactService {
+  rpc create(CreateContactRequest) returns (Contact) {}
+}
